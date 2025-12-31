@@ -74,21 +74,17 @@ const FAQ = () => {
 
       <div className="container-custom relative z-10">
         
-        {/* Header - Left Aligned */}
-        <div className="text-left mb-12 animate-fade-in-up">
-          <div className="flex items-center space-x-4 mb-6">
-            <div className="flex items-center justify-center w-16 h-16 bg-blue-100 rounded-full animate-bounce-slow">
-              <HelpCircle className="w-8 h-8 text-blue-600" />
-            </div>
-            <div>
-              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 bg-gradient-to-r from-blue-600 to-green-600 bg-clip-text text-transparent">
-                Frequently Asked Questions
-              </h2>
-              <p className="text-lg text-gray-600 mt-2">
-                Get answers to common questions about our professional HVACR services
-              </p>
-            </div>
+        {/* Header - Centered */}
+        <div className="text-center mb-16 animate-fade-in-up">
+          <div className="inline-flex items-center justify-center w-16 h-16 bg-blue-100 rounded-full mb-6 animate-bounce-slow">
+            <HelpCircle className="w-8 h-8 text-blue-600" />
           </div>
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-blue-600 via-green-500 to-blue-700 bg-clip-text text-transparent">
+            Frequently Asked Questions
+          </h2>
+          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+            Get answers to common questions about our professional HVACR services
+          </p>
         </div>
 
         <div className="grid lg:grid-cols-3 gap-12">
@@ -172,7 +168,7 @@ const FAQ = () => {
           {/* Right Side - Scrollable FAQs */}
           <div className="lg:col-span-2 lg:order-2">
             {/* FAQ Accordion - Limited to 5 visible, rest scrollable */}
-            <div className="space-y-4 animate-fade-in-up animation-delay-600 h-[600px] overflow-y-auto pr-4 custom-scrollbar-hidden">
+            <div className="space-y-4 animate-fade-in-up animation-delay-600 h-[650px] overflow-y-auto pr-4 custom-scrollbar" style={{ scrollbarWidth: '2px' }}>
               {faqs.map((faq, index) => (
                 <div
                   key={index}
@@ -194,9 +190,6 @@ const FAQ = () => {
                         </div>
                       </div>
                       <div>
-                        <div className="text-xs text-blue-600 font-medium mb-1">
-                          {faq.category}
-                        </div>
                         <span className="font-bold text-gray-800 text-lg group-hover:text-blue-600 transition-colors duration-300">
                           {faq.question}
                         </span>

@@ -59,6 +59,8 @@ const TestimonialCounter = ({ end, duration = 2000, suffix = '' }) => {
 const Testimonials = () => {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [isAutoPlaying, setIsAutoPlaying] = useState(true)
+  const [dragStart, setDragStart] = useState(0)
+  const [dragEnd, setDragEnd] = useState(0)
 
   const testimonials = [
     {
@@ -67,7 +69,7 @@ const Testimonials = () => {
       company: 'Spice Garden',
       content: 'Their refrigeration service saved our business during peak season. The team was professional and completed the repair within hours. Outstanding service quality!',
       rating: 5,
-      image: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Rajesh',
+      image: '/images/testimonial/01.jpg',
       service: 'Commercial Refrigeration',
       location: 'Mumbai'
     },
@@ -77,7 +79,7 @@ const Testimonials = () => {
       company: 'Residential Client',
       content: 'The AC installation was seamless. The technicians were punctual, clean, and efficient. Our home has never been more comfortable!',
       rating: 5,
-      image: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Priya',
+      image: '/images/testimonial/02.jpg',
       service: 'AC Installation',
       location: 'Delhi'
     },
@@ -87,19 +89,19 @@ const Testimonials = () => {
       company: 'TechPark Inc.',
       content: 'Professional commercial HVAC maintenance for our office complex. Energy bills reduced by 25% after their system optimization. Highly recommended!',
       rating: 5,
-      image: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Amit',
+      image: '/images/testimonial/03.jpg',
       service: 'HVAC Maintenance',
       location: 'Bangalore'
     },
     {
-      name: 'Sunita Reddy',
+      name: 'Fatima Al-Mansouri',
       role: 'Hospital Administrator',
-      company: 'City Medical Center',
+      company: 'Emirates Medical Center',
       content: 'Critical HVAC maintenance for our hospital. Their 24/7 service and expertise in medical facility requirements is exceptional.',
       rating: 5,
-      image: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Sunita',
+      image: '/images/testimonial/04.jpg',
       service: 'Medical HVAC',
-      location: 'Hyderabad'
+      location: 'Dubai'
     },
     {
       name: 'Vikram Singh',
@@ -107,7 +109,7 @@ const Testimonials = () => {
       company: 'Grand Plaza Hotel',
       content: 'Complete HVAC overhaul for our 200-room hotel. The project was completed on time and within budget. Excellent workmanship and support!',
       rating: 5,
-      image: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Vikram',
+      image: '/images/testimonial/05.jpg',
       service: 'Hotel HVAC',
       location: 'Goa'
     },
@@ -117,7 +119,7 @@ const Testimonials = () => {
       company: 'Fresh Mart',
       content: 'Their cold storage solutions helped us expand our business. Professional installation and ongoing maintenance support is top-notch.',
       rating: 5,
-      image: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Meera',
+      image: '/images/testimonial/06.jpg',
       service: 'Cold Storage',
       location: 'Pune'
     }
@@ -128,24 +130,43 @@ const Testimonials = () => {
     if (isAutoPlaying) {
       const interval = setInterval(() => {
         setCurrentIndex((prev) => (prev + 1) % testimonials.length)
-      }, 4000)
+      }, 5000)
       return () => clearInterval(interval)
     }
   }, [isAutoPlaying, testimonials.length])
 
   const nextSlide = () => {
     setCurrentIndex((prev) => (prev + 1) % testimonials.length)
-    setIsAutoPlaying(false)
   }
 
   const prevSlide = () => {
     setCurrentIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length)
-    setIsAutoPlaying(false)
   }
 
   const goToSlide = (index) => {
     setCurrentIndex(index)
-    setIsAutoPlaying(false)
+  }
+
+  const handleDragStart = (e) => {
+    setDragStart(e.clientX || e.touches?.[0]?.clientX)
+  }
+
+  const handleDragEnd = (e) => {
+    setDragEnd(e.clientX || e.changedTouches?.[0]?.clientX)
+    handleDragLogic()
+  }
+
+  const handleDragLogic = () => {
+    const dragDistance = dragStart - dragEnd
+    const threshold = 50
+
+    if (Math.abs(dragDistance) > threshold) {
+      if (dragDistance > 0) {
+        nextSlide()
+      } else {
+        prevSlide()
+      }
+    }
   }
 
   return (
@@ -156,11 +177,14 @@ const Testimonials = () => {
           autoPlay
           muted
           loop
+          playsInline
           className="w-full h-full object-cover"
         >
           <source src="/hvacr-video.mp4" type="video/mp4" />
         </video>
-        {/* Overlay */}
+        {/* Fallback gradient background if video doesn't load */}
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-900 via-blue-800 to-green-800"></div>
+        {/* Dark overlay */}
         <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-black/70"></div>
       </div>
 
@@ -168,11 +192,11 @@ const Testimonials = () => {
       <div className="relative z-10 section-padding">
         <div className="container-custom">
         {/* Header */}
-        <div className="text-center mb-16 animate-fade-in-up">
-          <div className="inline-flex items-center justify-center w-20 h-20 bg-white/10 backdrop-blur-sm rounded-full mb-6 animate-bounce-slow">
+        <div className="text-center mb-20 animate-fade-in-up">
+          <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-green-400/30 to-blue-400/30 backdrop-blur-sm rounded-full mb-6 animate-bounce-slow border border-green-400/50">
             <Quote className="w-10 h-10 text-green-400" />
           </div>
-          <h2 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-white to-green-400 bg-clip-text text-transparent">
+          <h2 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-blue-600 via-green-500 to-blue-700 bg-clip-text text-transparent">
             What Our Clients Say
           </h2>
           <p className="text-xl text-white/80 max-w-3xl mx-auto">
@@ -180,125 +204,116 @@ const Testimonials = () => {
           </p>
         </div>
 
-        {/* Main Testimonial Showcase */}
-        <div className="relative max-w-5xl mx-auto mb-16">
-          <div className="bg-white/10 backdrop-blur-lg rounded-3xl p-8 md:p-12 border border-white/20 shadow-2xl animate-fade-in-up animation-delay-200">
-            <div className="text-center">
-              {/* Customer Image */}
-              <div className="relative inline-block mb-6">
-                <img
-                  src={testimonials[currentIndex].image}
-                  alt={testimonials[currentIndex].name}
-                  className="w-24 h-24 rounded-full border-4 border-white/30 shadow-lg animate-scale-in"
-                />
-                <div className="absolute -bottom-2 -right-2 w-8 h-8 bg-green-500 rounded-full flex items-center justify-center">
-                  <ThumbsUp className="w-4 h-4 text-white" />
-                </div>
-              </div>
-
-              {/* Rating Stars */}
-              <div className="flex justify-center mb-6 animate-fade-in-up animation-delay-400">
-                {[...Array(testimonials[currentIndex].rating)].map((_, i) => (
-                  <Star 
-                    key={i} 
-                    className="w-6 h-6 fill-current text-yellow-400 mx-1 animate-star-glow" 
-                    style={{ animationDelay: `${i * 0.1}s` }}
-                  />
-                ))}
-              </div>
-
-              {/* Testimonial Content */}
-              <blockquote className="text-2xl md:text-3xl font-light italic text-white/95 mb-8 leading-relaxed animate-fade-in-up animation-delay-600">
-                "{testimonials[currentIndex].content}"
-              </blockquote>
-
-              {/* Customer Info */}
-              <div className="animate-fade-in-up animation-delay-800">
-                <h4 className="text-2xl font-bold text-white mb-2">
-                  {testimonials[currentIndex].name}
-                </h4>
-                <p className="text-green-400 font-semibold mb-1">
-                  {testimonials[currentIndex].role}
-                </p>
-                <p className="text-white/70 mb-2">
-                  {testimonials[currentIndex].company}
-                </p>
-                <div className="flex justify-center items-center space-x-4 text-sm text-white/60">
-                  <span className="bg-white/10 px-3 py-1 rounded-full">
-                    {testimonials[currentIndex].service}
-                  </span>
-                  <span className="bg-white/10 px-3 py-1 rounded-full">
-                    📍 {testimonials[currentIndex].location}
-                  </span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Navigation */}
-          <div className="flex justify-center items-center mt-8 space-x-6 animate-fade-in-up animation-delay-1000">
-            <button
-              onClick={prevSlide}
-              className="p-4 rounded-full bg-white/20 hover:bg-white/30 transition-all duration-300 transform hover:scale-110 backdrop-blur-sm"
+        {/* Main Testimonial Showcase - Card Carousel */}
+        <div className="relative mb-16">
+          <div 
+            className="overflow-hidden cursor-grab active:cursor-grabbing"
+            onMouseDown={handleDragStart}
+            onMouseUp={handleDragEnd}
+            onTouchStart={handleDragStart}
+            onTouchEnd={handleDragEnd}
+          >
+            <div 
+              className="flex transition-transform duration-700 ease-in-out gap-6"
+              style={{ transform: `translateX(-${currentIndex * (100 / 3)}%)` }}
             >
-              <ChevronLeft className="w-6 h-6" />
-            </button>
-            
-            <div className="flex space-x-3">
-              {testimonials.map((_, index) => (
-                <button
+              {testimonials.map((testimonial, index) => (
+                <div 
                   key={index}
-                  onClick={() => goToSlide(index)}
-                  className={`w-4 h-4 rounded-full transition-all duration-300 transform hover:scale-125 ${
-                    currentIndex === index 
-                      ? 'bg-green-400 shadow-lg shadow-green-400/50' 
-                      : 'bg-white/40 hover:bg-white/60'
-                  }`}
-                />
+                  className="w-full md:w-1/2 lg:w-1/3 flex-shrink-0 animate-fade-in-up"
+                  style={{ animationDelay: `${index * 0.1}s` }}
+                >
+                  <div className="bg-gradient-to-br from-white/15 to-white/5 backdrop-blur-xl rounded-3xl p-8 border border-white/30 shadow-2xl h-full hover:from-white/25 hover:to-white/10 hover:border-green-400/50 transition-all duration-500 group">
+                    <div className="text-center">
+                      {/* Customer Image */}
+                      <div className="relative inline-block mb-6 group/image">
+                        <div className="absolute inset-0 bg-gradient-to-br from-green-400 to-blue-400 rounded-full blur-lg opacity-0 group-hover/image:opacity-50 transition-opacity duration-500"></div>
+                        <img
+                          src={testimonial.image}
+                          alt={testimonial.name}
+                          className="w-32 h-32 rounded-full border-4 border-white/40 shadow-lg object-cover relative z-10 group-hover/image:border-green-400/80 transition-all duration-500 transform group-hover/image:scale-110"
+                        />
+                        <div className="absolute -bottom-2 -right-2 w-8 h-8 bg-gradient-to-br from-green-400 to-green-500 rounded-full flex items-center justify-center shadow-lg transform group-hover/image:scale-125 transition-transform duration-500">
+                          <ThumbsUp className="w-4 h-4 text-white" />
+                        </div>
+                      </div>
+
+                      {/* Rating Stars */}
+                      <div className="flex justify-center mb-4 gap-1">
+                        {[...Array(testimonial.rating)].map((_, i) => (
+                          <Star 
+                            key={i} 
+                            className="w-5 h-5 fill-current text-yellow-400 transition-transform duration-300 transform group-hover:scale-125 group-hover:rotate-12"
+                            style={{ transitionDelay: `${i * 50}ms` }}
+                          />
+                        ))}
+                      </div>
+
+                      {/* Testimonial Content */}
+                      <blockquote className="text-lg font-light italic text-white/95 mb-6 leading-relaxed line-clamp-4 group-hover:text-white transition-colors duration-300">
+                        "{testimonial.content}"
+                      </blockquote>
+
+                      {/* Customer Info */}
+                      <div className="space-y-2">
+                        <h4 className="text-xl font-bold text-white mb-1 group-hover:text-green-300 transition-colors duration-300">
+                          {testimonial.name}
+                        </h4>
+                        <p className="text-green-400 font-semibold text-sm mb-1 group-hover:text-green-300 transition-colors duration-300">
+                          {testimonial.role}
+                        </p>
+                        <p className="text-white/70 text-sm mb-2 group-hover:text-white/90 transition-colors duration-300">
+                          {testimonial.company}
+                        </p>
+                        <div className="flex justify-center items-center space-x-2 text-xs text-white/60 flex-wrap gap-2">
+                          <span className="bg-white/10 px-3 py-1 rounded-full group-hover:bg-green-400/30 transition-colors duration-300">
+                            {testimonial.service}
+                          </span>
+                          <span className="bg-white/10 px-3 py-1 rounded-full group-hover:bg-blue-400/30 transition-colors duration-300">
+                            📍 {testimonial.location}
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               ))}
             </div>
-            
-            <button
-              onClick={nextSlide}
-              className="p-4 rounded-full bg-white/20 hover:bg-white/30 transition-all duration-300 transform hover:scale-110 backdrop-blur-sm"
-            >
-              <ChevronRight className="w-6 h-6" />
-            </button>
           </div>
-        </div>
 
-        {/* Stats Section */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 animate-fade-in-up animation-delay-1200">
-          <div className="text-center p-6 bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 hover:bg-white/10 transition-all duration-300 transform hover:scale-105">
-            <Users className="w-12 h-12 text-green-400 mx-auto mb-4" />
-            <TestimonialCounter end="1000" suffix="+" />
-            <div className="text-white/80 font-medium">Happy Clients</div>
-          </div>
-          <div className="text-center p-6 bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 hover:bg-white/10 transition-all duration-300 transform hover:scale-105">
-            <Clock className="w-12 h-12 text-blue-400 mx-auto mb-4" />
-            <TestimonialCounter end="24" suffix="/7" />
-            <div className="text-white/80 font-medium">24/7 Service</div>
-          </div>
-          <div className="text-center p-6 bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 hover:bg-white/10 transition-all duration-300 transform hover:scale-105">
-            <Award className="w-12 h-12 text-yellow-400 mx-auto mb-4" />
-            <TestimonialCounter end="15" suffix="+" />
-            <div className="text-white/80 font-medium">Years Experience</div>
-          </div>
-          <div className="text-center p-6 bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 hover:bg-white/10 transition-all duration-300 transform hover:scale-105">
-            <ThumbsUp className="w-12 h-12 text-green-400 mx-auto mb-4" />
-            <TestimonialCounter end="100" suffix="%" />
-            <div className="text-white/80 font-medium">Satisfaction</div>
+          {/* Navigation Arrows */}
+          <button
+            onClick={prevSlide}
+            className="absolute left-0 top-1/2 transform -translate-y-1/2 -translate-x-16 md:-translate-x-20 p-2 md:p-3 rounded-lg bg-white/20 hover:bg-white/40 backdrop-blur-md text-white transition-all duration-300 transform hover:scale-110 hover:shadow-xl shadow-lg z-20 group border border-white/40 hover:border-white/80"
+          >
+            <ChevronLeft className="w-5 h-5 md:w-6 md:h-6 group-hover:-translate-x-0.5 transition-transform duration-300" />
+          </button>
+
+          <button
+            onClick={nextSlide}
+            className="absolute right-0 top-1/2 transform -translate-y-1/2 translate-x-16 md:translate-x-20 p-2 md:p-3 rounded-lg bg-white/20 hover:bg-white/40 backdrop-blur-md text-white transition-all duration-300 transform hover:scale-110 hover:shadow-xl shadow-lg z-20 group border border-white/40 hover:border-white/80"
+          >
+            <ChevronRight className="w-5 h-5 md:w-6 md:h-6 group-hover:translate-x-0.5 transition-transform duration-300" />
+          </button>
+
+          {/* Dot Indicators */}
+          <div className="flex justify-center items-center mt-10 space-x-3">
+            {testimonials.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => goToSlide(index)}
+                className={`rounded-full transition-all duration-500 transform hover:scale-150 ${
+                  currentIndex === index 
+                    ? 'bg-gradient-to-r from-green-400 to-green-500 shadow-lg shadow-green-400/50 w-8 h-3' 
+                    : 'bg-white/40 hover:bg-white/60 w-3 h-3'
+                }`}
+              />
+            ))}
           </div>
         </div>
 
         {/* Auto-play indicator */}
         <div className="text-center mt-8 animate-fade-in-up animation-delay-1400">
-          <button
-            onClick={() => setIsAutoPlaying(!isAutoPlaying)}
-            className="text-white/60 hover:text-white/80 transition-colors text-sm"
-          >
-            {isAutoPlaying ? '⏸️ Pause Auto-play' : '▶️ Resume Auto-play'}
-          </button>
         </div>
         </div>
       </div>

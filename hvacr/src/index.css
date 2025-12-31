@@ -26,44 +26,58 @@
   .section-padding {
     @apply py-16 md:py-20;
   }
+
+  @media (max-width: 640px) {
+    .section-padding {
+      @apply py-12;
+    }
+  }
   
   .container-custom {
     @apply container mx-auto px-4 md:px-6 lg:px-8 max-w-7xl;
   }
 
+  /* Mobile Responsive Padding */
+  @media (max-width: 640px) {
+    .container-custom {
+      @apply px-[15px];
+    }
+  }
+}
+
+@layer utilities {
   /* Custom Scrollbar - Right Side */
   .custom-scrollbar {
     scrollbar-width: thin;
-    scrollbar-color: #3b82f6 #f1f5f9;
+    scrollbar-color: #3b82f6 transparent;
   }
 
   .custom-scrollbar::-webkit-scrollbar {
-    width: 8px;
+    width: 6px;
   }
 
   .custom-scrollbar::-webkit-scrollbar-track {
-    background: #f1f5f9;
-    border-radius: 10px;
+    background: transparent;
   }
 
   .custom-scrollbar::-webkit-scrollbar-thumb {
-    background: linear-gradient(180deg, #3b82f6, #10b981);
+    background: #3b82f6;
     border-radius: 10px;
-    border: 2px solid #f1f5f9;
+    min-height: 40px;
   }
 
   .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-    background: linear-gradient(180deg, #2563eb, #059669);
+    background: #2563eb;
   }
 
   /* Custom Scrollbar - Hidden but functional */
   .custom-scrollbar-hidden {
-    scrollbar-width: none; /* Firefox */
-    -ms-overflow-style: none; /* Internet Explorer 10+ */
+    scrollbar-width: none;
+    -ms-overflow-style: none;
   }
 
   .custom-scrollbar-hidden::-webkit-scrollbar {
-    display: none; /* WebKit browsers */
+    display: none;
   }
 
   /* Custom Animations */
@@ -107,6 +121,147 @@
     animation: counterUp 2s ease-out forwards;
   }
 
+  .case-study-slide-enter {
+    animation: slideInFromRight 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  }
+
+  .case-study-slide-exit {
+    animation: slideOutToLeft 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  }
+
+  /* Liquid Fill Effect on Card */
+  .gradient-transition-icon {
+    background: linear-gradient(135deg, #3b82f6 0%, #60a5fa 100%);
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+  }
+
+  .group:hover .gradient-transition-icon {
+    background: linear-gradient(135deg, #3b82f6 0%, #60a5fa 100%);
+  }
+
+  /* Card Liquid Fill Background */
+  .why-choose-card {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .why-choose-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 0%;
+    background: #3b82f6;
+    transition: height 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .why-choose-card:hover::before {
+    height: 100%;
+  }
+
+  .why-choose-card > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  /* White text on hover */
+  .why-choose-card:hover h3 {
+    color: white;
+  }
+
+  .why-choose-card:hover p {
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  .why-choose-card:hover .gradient-transition-icon {
+    background: white;
+  }
+
+  .why-choose-card:hover .gradient-transition-icon svg {
+    color: #3b82f6;
+  }
+
+  .why-choose-card:hover ul {
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  .why-choose-card:hover li {
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  .why-choose-card:hover .text-blue-600 {
+    color: white !important;
+  }
+
+  /* Service Card Liquid Fill Effect */
+  .service-card {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .service-card > div:last-child {
+    background: white;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .service-card > div:last-child::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 0%;
+    background: linear-gradient(135deg, var(--card-color, #3b82f6), var(--card-color-light, #60a5fa));
+    transition: height 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .service-card:hover > div:last-child::before {
+    height: 100%;
+  }
+
+  .service-card > div:last-child > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Service card icon box white on hover */
+  .service-card:hover .w-14 {
+    background: white !important;
+  }
+
+  .service-card:hover .w-14 svg {
+    color: var(--card-color, #3b82f6) !important;
+  }
+
+  /* Book Service button white on hover */
+  .service-card:hover button {
+    background: white !important;
+    color: var(--card-color, #3b82f6) !important;
+  }
+
+  /* Service card text white on hover */
+  .service-card:hover h3 {
+    color: white !important;
+  }
+
+  .service-card:hover p {
+    color: rgba(255, 255, 255, 0.95) !important;
+  }
+
+  .service-card:hover .text-lg {
+    color: white !important;
+  }
+
   /* Animation Delays */
   .animation-delay-200 { animation-delay: 0.2s; }
   .animation-delay-400 { animation-delay: 0.4s; }
@@ -118,23 +273,6 @@
   .animation-delay-1200 { animation-delay: 1.2s; }
   .animation-delay-1300 { animation-delay: 1.3s; }
   .animation-delay-1400 { animation-delay: 1.4s; }
-
-  /* Particles */
-  .particles {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-  }
-
-  .particle {
-    position: absolute;
-    width: 4px;
-    height: 4px;
-    background: rgba(255, 255, 255, 0.3);
-    border-radius: 50%;
-    animation: float linear infinite;
-  }
 }
 
 @keyframes fadeInUp {
@@ -226,475 +364,25 @@
     opacity: 0;
   }
 }
-  /* 3D Carousel Animations */
-  .carousel-3d {
-    perspective: 1000px;
-    transform-style: preserve-3d;
-  }
 
-  .carousel-card {
-    transition: all 0.6s cubic-bezier(0.4, 0.0, 0.2, 1);
-    transform-style: preserve-3d;
-  }
-
-  .carousel-card:hover {
-    transform: translateY(-10px) rotateY(5deg);
-  }
-
-  .carousel-card.active {
-    transform: translateZ(50px) scale(1.1);
-    z-index: 10;
-  }
-
-  .carousel-card.inactive {
-    transform: translateZ(-100px) scale(0.8);
-    opacity: 0.7;
-  }
-
-  /* 3D Glow Effects */
-  .glow-blue {
-    box-shadow: 0 0 20px rgba(59, 130, 246, 0.5),
-                0 0 40px rgba(59, 130, 246, 0.3),
-                0 0 60px rgba(59, 130, 246, 0.1);
-  }
-
-  .glow-green {
-    box-shadow: 0 0 20px rgba(16, 185, 129, 0.5),
-                0 0 40px rgba(16, 185, 129, 0.3),
-                0 0 60px rgba(16, 185, 129, 0.1);
-  }
-
-  /* Floating Animation for 3D Elements */
-  @keyframes float-3d {
-    0%, 100% {
-      transform: translateY(0px) rotateX(0deg);
-    }
-    50% {
-      transform: translateY(-10px) rotateX(2deg);
-    }
-  }
-
-  .float-3d {
-    animation: float-3d 3s ease-in-out infinite;
-  }
-
-  /* Carousel Navigation Animations */
-  .carousel-nav {
-    transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
-  }
-
-  .carousel-nav:hover {
-    transform: scale(1.1);
-    backdrop-filter: blur(10px);
-  }
-
-  /* 3D Card Flip Animation */
-  @keyframes card-flip {
-    0% {
-      transform: rotateY(0deg);
-    }
-    50% {
-      transform: rotateY(90deg);
-    }
-    100% {
-      transform: rotateY(0deg);
-    }
-  }
-
-  .card-flip {
-    animation: card-flip 0.8s ease-in-out;
-  }
-
-  /* Depth Blur Effect */
-  .depth-blur {
-    filter: blur(2px);
-    transition: filter 0.5s ease;
-  }
-
-  .depth-blur:hover {
-    filter: blur(0px);
-  }
-
-  /* 3D Text Shadow */
-  .text-3d {
-    text-shadow: 
-      1px 1px 0px rgba(0,0,0,0.1),
-      2px 2px 0px rgba(0,0,0,0.1),
-      3px 3px 0px rgba(0,0,0,0.1),
-      4px 4px 10px rgba(0,0,0,0.3);
-  }
-
-  /* Carousel Indicator Animations */
-  .carousel-indicator {
-    transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
-    position: relative;
-    overflow: hidden;
-  }
-
-  .carousel-indicator::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.8), transparent);
-    transition: left 0.5s;
-  }
-
-  .carousel-indicator.active::before {
-    left: 100%;
-  }
-
-  /* 3D Perspective Container */
-  .perspective-container {
-    perspective: 1200px;
-    perspective-origin: center center;
-  }
-
-  /* Enhanced Glassmorphism for 3D */
-  .glass-3d {
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    box-shadow: 
-      0 8px 32px rgba(0, 0, 0, 0.1),
-      inset 0 1px 0 rgba(255, 255, 255, 0.2);
-  }
-
-  /* Particle Animation for Background */
-  @keyframes particle-float {
-    0%, 100% {
-      transform: translateY(0px) translateX(0px) rotate(0deg);
-    }
-    33% {
-      transform: translateY(-20px) translateX(10px) rotate(120deg);
-    }
-    66% {
-      transform: translateY(10px) translateX(-10px) rotate(240deg);
-    }
-  }
-
-  .particle {
-    animation: particle-float 6s ease-in-out infinite;
-  }
-
-  .particle:nth-child(2) {
-    animation-delay: -2s;
-  }
-
-  .particle:nth-child(3) {
-    animation-delay: -4s;
-  }
-  /* Portal Effects */
-  .portal-bg {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 800px;
-    height: 800px;
-    transform: translate(-50%, -50%);
-    background: radial-gradient(circle, 
-      rgba(147, 51, 234, 0.3) 0%, 
-      rgba(59, 130, 246, 0.2) 30%, 
-      rgba(16, 185, 129, 0.1) 60%, 
-      transparent 100%);
-    border-radius: 50%;
-    animation: portal-pulse 4s ease-in-out infinite;
-  }
-
-  .portal-rings {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
-
-  .portal-rings::before,
-  .portal-rings::after {
-    content: '';
-    position: absolute;
-    border: 2px solid rgba(147, 51, 234, 0.3);
-    border-radius: 50%;
-    animation: portal-ring 6s linear infinite;
-  }
-
-  .portal-rings::before {
-    width: 400px;
-    height: 400px;
-    top: -200px;
-    left: -200px;
-  }
-
-  .portal-rings::after {
-    width: 600px;
-    height: 600px;
-    top: -300px;
-    left: -300px;
-    animation-delay: -3s;
-    border-color: rgba(59, 130, 246, 0.2);
-  }
-
-  @keyframes portal-pulse {
-    0%, 100% {
-      transform: translate(-50%, -50%) scale(1);
-      opacity: 0.6;
-    }
-    50% {
-      transform: translate(-50%, -50%) scale(1.1);
-      opacity: 0.8;
-    }
-  }
-
-  @keyframes portal-ring {
-    0% {
-      transform: scale(0.8) rotate(0deg);
-      opacity: 1;
-    }
-    50% {
-      opacity: 0.5;
-    }
-    100% {
-      transform: scale(1.2) rotate(360deg);
-      opacity: 0;
-    }
-  }
-
-  /* Portal Container */
-  .portal-container {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transform-style: preserve-3d;
-  }
-
-  /* Portal Cards */
-  .portal-card {
-    position: absolute;
-    width: 350px;
-    height: 500px;
-    transition: all 0.8s cubic-bezier(0.4, 0.0, 0.2, 1);
-    transform-style: preserve-3d;
-    cursor: pointer;
-  }
-
-  .portal-card.active {
-    z-index: 10;
-  }
-
-  .portal-card.inactive {
-    filter: blur(1px);
-  }
-
-  /* Portal Entry Effect */
-  .portal-entry {
-    position: absolute;
-    inset: 0;
-    border-radius: 1rem;
-    overflow: hidden;
-    z-index: 1;
-  }
-
-  .portal-glow {
-    position: absolute;
-    inset: -2px;
-    background: linear-gradient(45deg, 
-      #9333ea, #3b82f6, #10b981, #f59e0b, #ef4444, #9333ea);
-    background-size: 400% 400%;
-    border-radius: 1rem;
-    animation: portal-glow 3s ease infinite;
+@keyframes slideInFromRight {
+  from {
+    transform: translateX(100%) scaleX(0.8) rotateY(45deg);
     opacity: 0;
-    transition: opacity 0.3s ease;
   }
-
-  .portal-card.active .portal-glow {
+  to {
+    transform: translateX(0) scaleX(1) rotateY(0deg);
     opacity: 1;
   }
+}
 
-  .portal-card:hover .portal-glow {
-    opacity: 0.7;
+@keyframes slideOutToLeft {
+  from {
+    transform: translateX(0) scaleX(1) rotateY(0deg);
+    opacity: 1;
   }
-
-  @keyframes portal-glow {
-    0%, 100% {
-      background-position: 0% 50%;
-    }
-    50% {
-      background-position: 100% 50%;
-    }
-  }
-
-  /* Portal Navigation */
-  .portal-nav {
-    backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-  }
-
-  .portal-nav:hover {
-    background: rgba(255, 255, 255, 0.2);
-    transform: scale(1.1);
-    box-shadow: 0 0 20px rgba(147, 51, 234, 0.5);
-  }
-
-  /* Portal Indicators */
-  .portal-indicator {
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.4);
-    border: 2px solid transparent;
-    transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
-    position: relative;
-    overflow: hidden;
-  }
-
-  .portal-indicator.active {
-    background: #3b82f6;
-    transform: scale(1.3);
-    box-shadow: 0 0 15px rgba(59, 130, 246, 0.8);
-  }
-
-  .portal-indicator.active::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.8), transparent);
-    animation: portal-indicator-shine 2s ease infinite;
-  }
-
-  @keyframes portal-indicator-shine {
-    0% {
-      transform: translateX(-100%) rotate(45deg);
-    }
-    100% {
-      transform: translateX(100%) rotate(45deg);
-    }
-  }
-
-  /* Portal Badge */
-  .portal-badge {
-    display: inline-flex;
-    align-items: center;
-    justify-center;
-    width: 40px;
-    height: 40px;
-    background: linear-gradient(45deg, #9333ea, #3b82f6);
-    border-radius: 50%;
-    animation: portal-badge-rotate 4s linear infinite;
-  }
-
-  @keyframes portal-badge-rotate {
-    0% {
-      transform: rotate(0deg);
-      box-shadow: 0 0 10px rgba(147, 51, 234, 0.5);
-    }
-    50% {
-      box-shadow: 0 0 20px rgba(59, 130, 246, 0.8);
-    }
-    100% {
-      transform: rotate(360deg);
-      box-shadow: 0 0 10px rgba(147, 51, 234, 0.5);
-    }
-  }
-
-  /* Portal Results Animation */
-  .portal-result {
-    animation: portal-result-appear 0.5s ease forwards;
+  to {
+    transform: translateX(-100%) scaleX(0.8) rotateY(-45deg);
     opacity: 0;
-    transform: translateX(-20px);
   }
-
-  .portal-result:nth-child(1) { animation-delay: 0.1s; }
-  .portal-result:nth-child(2) { animation-delay: 0.2s; }
-  .portal-result:nth-child(3) { animation-delay: 0.3s; }
-
-  @keyframes portal-result-appear {
-    to {
-      opacity: 1;
-      transform: translateX(0);
-    }
-  }
-
-  /* Portal Metrics */
-  .portal-metric {
-    position: relative;
-    overflow: hidden;
-  }
-
-  .portal-metric::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-    transition: left 0.6s ease;
-  }
-
-  .portal-metric:hover::before {
-    left: 100%;
-  }
-
-  /* Portal CTA */
-  .portal-cta {
-    position: relative;
-    overflow: hidden;
-  }
-
-  .portal-cta::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-    transform: translateX(-100%) skewX(-45deg);
-    transition: transform 0.6s ease;
-  }
-
-  .portal-cta:hover::before {
-    transform: translateX(100%) skewX(-45deg);
-  }
-
-  /* Enhanced 3D Text Shadow for Portals */
-  .text-3d {
-    text-shadow: 
-      1px 1px 0px rgba(147, 51, 234, 0.3),
-      2px 2px 0px rgba(59, 130, 246, 0.2),
-      3px 3px 0px rgba(16, 185, 129, 0.1),
-      4px 4px 10px rgba(0, 0, 0, 0.5);
-  }
-
-  /* Portal Entrance Animation */
-  @keyframes portal-entrance {
-    0% {
-      opacity: 0;
-      transform: scale(0.5) rotateY(180deg);
-    }
-    50% {
-      opacity: 0.7;
-      transform: scale(1.1) rotateY(90deg);
-    }
-    100% {
-      opacity: 1;
-      transform: scale(1) rotateY(0deg);
-    }
-  }
-
-  .portal-card.active {
-    animation: portal-entrance 0.8s ease-out;
-  }
-
-  /* Responsive Portal Cards */
-  @media (max-width: 768px) {
-    .portal-card {
-      width: 280px;
-      height: 400px;
-    }
-    
-    .portal-container {
-      padding: 0 20px;
-    }
-  }
+}

@@ -1,4 +1,4 @@
-import { ArrowRight, CheckCircle, Target, Zap, Award, ChevronLeft, ChevronRight } from 'lucide-react'
+import { ArrowRight, CheckCircle, Target, Zap, Award, ChevronLeft, ChevronRight, Users, Clock, ThumbsUp } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { useState, useEffect, useRef } from 'react'
 
@@ -61,6 +61,8 @@ const CaseStudies = () => {
   const [activeFilter, setActiveFilter] = useState('All')
   const [currentIndex, setCurrentIndex] = useState(0)
   const [isAutoPlay, setIsAutoPlay] = useState(true)
+  const [dragStart, setDragStart] = useState(0)
+  const [dragEnd, setDragEnd] = useState(0)
 
   const caseStudies = [
     {
@@ -181,6 +183,28 @@ const CaseStudies = () => {
     setIsAutoPlay(false)
   }
 
+  const handleDragStart = (e) => {
+    setDragStart(e.clientX || e.touches?.[0]?.clientX)
+  }
+
+  const handleDragEnd = (e) => {
+    setDragEnd(e.clientX || e.changedTouches?.[0]?.clientX)
+    handleDragLogic()
+  }
+
+  const handleDragLogic = () => {
+    const dragDistance = dragStart - dragEnd
+    const threshold = 50
+
+    if (Math.abs(dragDistance) > threshold) {
+      if (dragDistance > 0) {
+        nextSlide()
+      } else {
+        prevSlide()
+      }
+    }
+  }
+
   return (
     <div className="section-padding bg-gradient-to-br from-gray-50 via-blue-50 to-green-50 relative overflow-hidden">
       {/* Background Animation Elements */}
@@ -197,7 +221,7 @@ const CaseStudies = () => {
           <div className="inline-flex items-center justify-center w-20 h-20 bg-blue-100 rounded-full mb-6 animate-bounce-slow">
             <Target className="w-10 h-10 text-blue-600" />
           </div>
-          <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6 bg-gradient-to-r from-blue-600 to-green-600 bg-clip-text text-transparent">
+          <h1 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-blue-600 via-green-500 to-blue-700 bg-clip-text text-transparent">
             Our Case Studies
           </h1>
           <p className="text-xl text-gray-600 max-w-4xl mx-auto mb-8">
@@ -241,13 +265,24 @@ const CaseStudies = () => {
             </div>
 
             {/* Main Carousel */}
-            <div className="relative h-[600px] overflow-hidden">
+            <div 
+              className="relative h-[600px] overflow-hidden cursor-grab active:cursor-grabbing"
+              onMouseDown={handleDragStart}
+              onMouseUp={handleDragEnd}
+              onTouchStart={handleDragStart}
+              onTouchEnd={handleDragEnd}
+            >
               <div 
-                className="flex transition-transform duration-500 ease-out h-full"
+                className="flex transition-transform duration-800 ease-in-out h-full"
                 style={{ transform: `translateX(-${currentIndex * 100}%)` }}
               >
-                {filteredStudies.map((study) => (
-                  <div key={study.id} className="w-full flex-shrink-0 relative">
+                {filteredStudies.map((study, index) => (
+                  <div 
+                    key={study.id} 
+                    className={`w-full flex-shrink-0 relative ${
+                      index === currentIndex ? 'case-study-slide-enter' : index < currentIndex ? 'case-study-slide-exit' : ''
+                    }`}
+                  >
                     {/* Background Image */}
                     <div className="absolute inset-0">
                       <img
@@ -375,21 +410,6 @@ const CaseStudies = () => {
                 ))}
               </div>
 
-              {/* Navigation Arrows */}
-              <button
-                onClick={prevSlide}
-                className="absolute left-6 top-1/2 transform -translate-y-1/2 p-3 bg-white/20 backdrop-blur-sm rounded-full text-white hover:bg-white/30 transition-all duration-300 transform hover:scale-110 z-20"
-              >
-                <ChevronLeft className="w-6 h-6" />
-              </button>
-
-              <button
-                onClick={nextSlide}
-                className="absolute right-6 top-1/2 transform -translate-y-1/2 p-3 bg-white/20 backdrop-blur-sm rounded-full text-white hover:bg-white/30 transition-all duration-300 transform hover:scale-110 z-20"
-              >
-                <ChevronRight className="w-6 h-6" />
-              </button>
-
               {/* Dot Indicators */}
               <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 flex space-x-3 z-20">
                 {filteredStudies.map((_, index) => (
@@ -408,30 +428,64 @@ const CaseStudies = () => {
           </div>
         </div>
 
-        {/* Stats Summary - No Background */}
-        <div className="mb-16 animate-fade-in-up animation-delay-800">
-          <div className="text-center mb-8">
-            <h2 className="text-3xl font-bold mb-4 text-gray-900">Our Impact by Numbers</h2>
-            <p className="text-gray-600 max-w-2xl mx-auto">
-              Delivering measurable results across industries with innovative HVACR solutions
-            </p>
-          </div>
+        {/* Combined Stats Heading */}
+        <div className="text-center mb-12 animate-fade-in-up animation-delay-600">
+          <h2 className="text-4xl font-bold mb-4 text-black">
+            Our Impact by Numbers
+          </h2>
+          <p className="text-gray-600 max-w-2xl mx-auto">
+            Delivering measurable results across industries with innovative HVACR solutions
+          </p>
+        </div>
+
+        {/* Stats Section from Testimonials */}
+        <div className="mb-16 animate-fade-in-up animation-delay-700">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            <div className="text-center">
-              <CounterAnimation end="500" suffix="+" />
-              <div className="text-gray-600">Successful Projects</div>
+            <div className="text-center p-8 bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl border border-blue-200 hover:from-blue-100 hover:to-blue-200 hover:border-green-400/50 transition-all duration-500 transform hover:scale-105 group shadow-lg">
+              <Users className="w-12 h-12 text-green-500 mx-auto mb-4 group-hover:scale-125 transition-transform duration-300" />
+              <CounterAnimation end="1000" suffix="+" />
+              <div className="text-gray-700 font-medium group-hover:text-gray-900 transition-colors duration-300">Happy Clients</div>
             </div>
-            <div className="text-center">
-              <CounterAnimation end="5" suffix="M+" />
-              <div className="text-gray-600">Client Savings</div>
+            <div className="text-center p-8 bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl border border-blue-200 hover:from-blue-100 hover:to-blue-200 hover:border-blue-400/50 transition-all duration-500 transform hover:scale-105 group shadow-lg">
+              <Clock className="w-12 h-12 text-blue-500 mx-auto mb-4 group-hover:scale-125 transition-transform duration-300" />
+              <CounterAnimation end="24" suffix="/7" />
+              <div className="text-gray-700 font-medium group-hover:text-gray-900 transition-colors duration-300">24/7 Service</div>
             </div>
-            <div className="text-center">
-              <CounterAnimation end="98" suffix="%" />
-              <div className="text-gray-600">Satisfaction Rate</div>
-            </div>
-            <div className="text-center">
+            <div className="text-center p-8 bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl border border-blue-200 hover:from-blue-100 hover:to-blue-200 hover:border-yellow-400/50 transition-all duration-500 transform hover:scale-105 group shadow-lg">
+              <Award className="w-12 h-12 text-yellow-500 mx-auto mb-4 group-hover:scale-125 transition-transform duration-300" />
               <CounterAnimation end="15" suffix="+" />
-              <div className="text-gray-600">Industries Served</div>
+              <div className="text-gray-700 font-medium group-hover:text-gray-900 transition-colors duration-300">Years Experience</div>
+            </div>
+            <div className="text-center p-8 bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl border border-blue-200 hover:from-blue-100 hover:to-blue-200 hover:border-green-400/50 transition-all duration-500 transform hover:scale-105 group shadow-lg">
+              <ThumbsUp className="w-12 h-12 text-green-500 mx-auto mb-4 group-hover:scale-125 transition-transform duration-300" />
+              <CounterAnimation end="100" suffix="%" />
+              <div className="text-gray-700 font-medium group-hover:text-gray-900 transition-colors duration-300">Satisfaction</div>
+            </div>
+          </div>
+        </div>
+
+        {/* Stats Summary - Card Style */}
+        <div className="mb-16 animate-fade-in-up animation-delay-800">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            <div className="text-center p-8 bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl border border-blue-200 hover:from-blue-100 hover:to-blue-200 hover:border-green-400/50 transition-all duration-500 transform hover:scale-105 group shadow-lg">
+              <Target className="w-12 h-12 text-green-500 mx-auto mb-4 group-hover:scale-125 transition-transform duration-300" />
+              <CounterAnimation end="500" suffix="+" />
+              <div className="text-gray-700 font-medium group-hover:text-gray-900 transition-colors duration-300">Successful Projects</div>
+            </div>
+            <div className="text-center p-8 bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl border border-blue-200 hover:from-blue-100 hover:to-blue-200 hover:border-blue-400/50 transition-all duration-500 transform hover:scale-105 group shadow-lg">
+              <Zap className="w-12 h-12 text-blue-500 mx-auto mb-4 group-hover:scale-125 transition-transform duration-300" />
+              <CounterAnimation end="5" suffix="M+" />
+              <div className="text-gray-700 font-medium group-hover:text-gray-900 transition-colors duration-300">Client Savings</div>
+            </div>
+            <div className="text-center p-8 bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl border border-blue-200 hover:from-blue-100 hover:to-blue-200 hover:border-yellow-400/50 transition-all duration-500 transform hover:scale-105 group shadow-lg">
+              <Award className="w-12 h-12 text-yellow-500 mx-auto mb-4 group-hover:scale-125 transition-transform duration-300" />
+              <CounterAnimation end="98" suffix="%" />
+              <div className="text-gray-700 font-medium group-hover:text-gray-900 transition-colors duration-300">Satisfaction Rate</div>
+            </div>
+            <div className="text-center p-8 bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl border border-blue-200 hover:from-blue-100 hover:to-blue-200 hover:border-green-400/50 transition-all duration-500 transform hover:scale-105 group shadow-lg">
+              <CheckCircle className="w-12 h-12 text-green-500 mx-auto mb-4 group-hover:scale-125 transition-transform duration-300" />
+              <CounterAnimation end="15" suffix="+" />
+              <div className="text-gray-700 font-medium group-hover:text-gray-900 transition-colors duration-300">Industries Served</div>
             </div>
           </div>
         </div>
