@@ -91,74 +91,80 @@ const FAQ = () => {
           
           {/* Left Side - Fixed Sidebar */}
           <div className="lg:col-span-1 lg:order-1">
-            <div className="sticky top-8 space-y-6">
+            <div className="sticky top-8">
               
-              {/* Quick Stats - Horizontal Layout */}
+              {/* Combined Quick Stats and Contact CTA */}
               <div className="bg-white rounded-3xl shadow-xl p-6 border border-gray-100 animate-fade-in-up animation-delay-200">
-                <h3 className="text-lg font-bold text-gray-900 mb-4">Quick Facts</h3>
-                <div className="grid grid-cols-1 gap-3">
-                  <div className="flex items-center space-x-3 p-3 bg-blue-50 rounded-xl">
-                    <Clock className="w-6 h-6 text-blue-600 flex-shrink-0" />
-                    <div className="flex-1">
-                      <div className="font-bold text-gray-900 text-sm">24/7 Service</div>
-                      <div className="text-xs text-gray-600">24/7 support</div>
+                {/* Quick Stats Section */}
+                <div className="mb-6">
+                  <h3 className="text-lg font-bold text-gray-900 mb-4">Quick Facts</h3>
+                  <div className="grid grid-cols-1 gap-3">
+                    <div className="flex items-center space-x-3 p-3 bg-blue-50 rounded-xl">
+                      <Clock className="w-6 h-6 text-blue-600 flex-shrink-0" />
+                      <div className="flex-1">
+                        <div className="font-bold text-gray-900 text-sm">24/7 Service</div>
+                        <div className="text-xs text-gray-600">24/7 support</div>
+                      </div>
                     </div>
-                  </div>
-                  <div className="flex items-center space-x-3 p-3 bg-green-50 rounded-xl">
-                    <Award className="w-6 h-6 text-green-600 flex-shrink-0" />
-                    <div className="flex-1">
-                      <div className="font-bold text-gray-900 text-sm">15+ Years</div>
-                      <div className="text-xs text-gray-600">Experience</div>
+                    <div className="flex items-center space-x-3 p-3 bg-green-50 rounded-xl">
+                      <Award className="w-6 h-6 text-green-600 flex-shrink-0" />
+                      <div className="flex-1">
+                        <div className="font-bold text-gray-900 text-sm">15+ Years</div>
+                        <div className="text-xs text-gray-600">Experience</div>
+                      </div>
                     </div>
-                  </div>
-                  <div className="flex items-center space-x-3 p-3 bg-purple-50 rounded-xl">
-                    <Shield className="w-6 h-6 text-purple-600 flex-shrink-0" />
-                    <div className="flex-1">
-                      <div className="font-bold text-gray-900 text-sm">Licensed</div>
-                      <div className="text-xs text-gray-600">& Insured</div>
+                    <div className="flex items-center space-x-3 p-3 bg-purple-50 rounded-xl">
+                      <Shield className="w-6 h-6 text-purple-600 flex-shrink-0" />
+                      <div className="flex-1">
+                        <div className="font-bold text-gray-900 text-sm">Licensed</div>
+                        <div className="text-xs text-gray-600">& Insured</div>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
 
-              {/* Contact CTA - Horizontal Layout */}
-              <div className="bg-white rounded-3xl shadow-xl p-6 border border-gray-100 animate-fade-in-up animation-delay-400">
-                <h3 className="text-lg font-bold text-gray-900 mb-2">Still have questions?</h3>
-                <p className="text-gray-600 text-sm mb-4">Our experts are here to help</p>
-                
-                <div className="grid grid-cols-1 gap-3">
-                  <a
-                    href="/contact"
-                    className="group bg-blue-500 hover:bg-blue-600 text-white rounded-xl p-3 transition-all duration-300 transform hover:scale-105 hover:shadow-lg flex items-center space-x-3"
-                  >
-                    <MessageCircle className="w-5 h-5 group-hover:animate-bounce flex-shrink-0" />
-                    <div className="flex-1">
-                      <div className="font-bold text-sm">Live Chat</div>
-                      <div className="text-blue-100 text-xs">Get instant answers</div>
-                    </div>
-                  </a>
+                {/* Divider */}
+                <div className="border-t border-gray-200 my-6"></div>
+
+                {/* Contact CTA Section */}
+                <div>
+                  <h3 className="text-lg font-bold text-gray-900 mb-2">Still have questions?</h3>
+                  <p className="text-gray-600 text-sm mb-4">Our experts are here to help</p>
                   
-                  <a
-                    href="tel:18002665524"
-                    className="group bg-green-500 hover:bg-green-600 text-white rounded-xl p-3 transition-all duration-300 transform hover:scale-105 hover:shadow-lg flex items-center space-x-3"
-                  >
-                    <Phone className="w-5 h-5 group-hover:animate-bounce flex-shrink-0" />
-                    <div className="flex-1">
-                      <div className="font-bold text-sm">Call Now</div>
-                      <div className="text-green-100 text-xs">24/7 Service</div>
-                    </div>
-                  </a>
-                  
-                  <a
-                    href="/contact"
-                    className="group bg-purple-500 hover:bg-purple-600 text-white rounded-xl p-3 transition-all duration-300 transform hover:scale-105 hover:shadow-lg flex items-center space-x-3"
-                  >
-                    <HelpCircle className="w-5 h-5 group-hover:animate-bounce flex-shrink-0" />
-                    <div className="flex-1">
-                      <div className="font-bold text-sm">Free Consultation</div>
-                      <div className="text-purple-100 text-xs">Expert assessment</div>
-                    </div>
-                  </a>
+                  <div className="grid grid-cols-1 gap-3">
+                    <a
+                      href="/contact"
+                      className="group bg-blue-500 hover:bg-blue-600 text-white rounded-xl p-3 transition-all duration-300 transform hover:scale-105 hover:shadow-lg flex items-center space-x-3"
+                    >
+                      <MessageCircle className="w-5 h-5 group-hover:animate-bounce flex-shrink-0" />
+                      <div className="flex-1">
+                        <div className="font-bold text-sm">Live Chat</div>
+                        <div className="text-blue-100 text-xs">Get instant answers</div>
+                      </div>
+                    </a>
+                    
+                    <a
+                      href="tel:18002665524"
+                      className="group bg-green-500 hover:bg-green-600 text-white rounded-xl p-3 transition-all duration-300 transform hover:scale-105 hover:shadow-lg flex items-center space-x-3"
+                    >
+                      <Phone className="w-5 h-5 group-hover:animate-bounce flex-shrink-0" />
+                      <div className="flex-1">
+                        <div className="font-bold text-sm">Call Now</div>
+                        <div className="text-green-100 text-xs">24/7 Service</div>
+                      </div>
+                    </a>
+                    
+                    <a
+                      href="/contact"
+                      className="group bg-purple-500 hover:bg-purple-600 text-white rounded-xl p-3 transition-all duration-300 transform hover:scale-105 hover:shadow-lg flex items-center space-x-3"
+                    >
+                      <HelpCircle className="w-5 h-5 group-hover:animate-bounce flex-shrink-0" />
+                      <div className="flex-1">
+                        <div className="font-bold text-sm">Free Consultation</div>
+                        <div className="text-purple-100 text-xs">Expert assessment</div>
+                      </div>
+                    </a>
+                  </div>
                 </div>
               </div>
 
@@ -168,7 +174,7 @@ const FAQ = () => {
           {/* Right Side - Scrollable FAQs */}
           <div className="lg:col-span-2 lg:order-2">
             {/* FAQ Accordion - Limited to 5 visible, rest scrollable */}
-            <div className="space-y-4 animate-fade-in-up animation-delay-600 h-[650px] overflow-y-auto pr-4 custom-scrollbar" style={{ scrollbarWidth: '2px' }}>
+            <div className="space-y-4 animate-fade-in-up animation-delay-600 h-[520px] overflow-y-auto pr-4 custom-scrollbar" style={{ scrollbarWidth: '2px' }}>
               {faqs.map((faq, index) => (
                 <div
                   key={index}
