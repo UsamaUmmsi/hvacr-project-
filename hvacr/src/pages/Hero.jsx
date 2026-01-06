@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import { Shield, Clock, Award, Users } from 'lucide-react'
+import { Simple3DIcon, Background3D } from '../Components/ThreeD/Simple3D'
 
 const Hero = () => {
   return (
@@ -21,6 +22,9 @@ const Hero = () => {
         {/* Dark overlay for better text readability */}
         <div className="absolute inset-0 bg-black/40"></div>
       </div>
+
+      {/* 3D Background Elements */}
+      <Background3D className="z-1" />
 
       {/* Animated particles background */}
       <div className="absolute inset-0 z-1">
@@ -70,7 +74,7 @@ const Hero = () => {
             {/* Features */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6 animate-fade-in-up animation-delay-600">
               <div className="flex items-center space-x-3 p-3 rounded-lg bg-white/5 backdrop-blur-sm hover:bg-white/10 transition-all duration-300 transform hover:scale-105">
-                <Shield className="w-8 h-8 text-green-400" />
+                <Simple3DIcon type="cube" color="#10B981" size={32} className="flex-shrink-0" />
                 <span className="font-semibold text-sm">Licensed & Insured</span>
               </div>
               <div className="flex items-center space-x-3 p-3 rounded-lg bg-white/5 backdrop-blur-sm hover:bg-white/10 transition-all duration-300 transform hover:scale-105">

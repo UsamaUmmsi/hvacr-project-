@@ -63,9 +63,26 @@ const FAQ = () => {
   }
 
   return (
-    <section className="section-padding bg-gradient-to-br from-gray-50 via-blue-50 to-green-50 relative overflow-hidden">
+    <section className="section-padding relative overflow-hidden text-white">
+      {/* Video Background */}
+      <div className="absolute inset-0 z-0">
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          className="w-full h-full object-cover"
+        >
+          <source src="/hvacr-video.mp4" type="video/mp4" />
+        </video>
+        {/* Fallback gradient background */}
+        <div className="absolute inset-0 bg-gradient-to-r from-blue-900 via-blue-800 to-green-800"></div>
+        {/* Dark overlay for better text readability */}
+        <div className="absolute inset-0 bg-black/40"></div>
+      </div>
+
       {/* Background Animation Elements */}
-      <div className="absolute inset-0 opacity-5">
+      <div className="absolute inset-0 opacity-10">
         <div className="absolute top-20 left-10 w-32 h-32 bg-blue-500 rounded-full animate-pulse"></div>
         <div className="absolute top-40 right-20 w-24 h-24 bg-green-500 rounded-full animate-bounce-slow"></div>
         <div className="absolute bottom-20 left-1/4 w-16 h-16 bg-blue-400 rounded-full animate-pulse"></div>
@@ -76,106 +93,23 @@ const FAQ = () => {
         
         {/* Header - Centered */}
         <div className="text-center mb-16 animate-fade-in-up">
-          <div className="inline-flex items-center justify-center w-16 h-16 bg-blue-100 rounded-full mb-6 animate-bounce-slow">
-            <HelpCircle className="w-8 h-8 text-blue-600" />
+          <div className="inline-flex items-center justify-center w-16 h-16 bg-white/20 backdrop-blur-lg rounded-full mb-6 animate-bounce-slow border border-white/30">
+            <HelpCircle className="w-8 h-8 text-white" />
           </div>
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-blue-600 via-green-500 to-blue-700 bg-clip-text text-transparent">
-            Frequently Asked Questions
+          <h2 className="text-4xl md:text-5xl font-bold mb-4">
+            <span className="text-white">Frequently Asked</span> <span className="text-primary">Questions</span>
           </h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+          <p className="text-lg text-white/90 max-w-2xl mx-auto">
             Get answers to common questions about our professional HVACR services
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-3 gap-12">
-          
-          {/* Left Side - Fixed Sidebar */}
-          <div className="lg:col-span-1 lg:order-1">
-            <div className="sticky top-8">
-              
-              {/* Combined Quick Stats and Contact CTA */}
-              <div className="bg-white rounded-3xl shadow-xl p-6 border border-gray-100 animate-fade-in-up animation-delay-200">
-                {/* Quick Stats Section */}
-                <div className="mb-6">
-                  <h3 className="text-lg font-bold text-gray-900 mb-4">Quick Facts</h3>
-                  <div className="grid grid-cols-1 gap-3">
-                    <div className="flex items-center space-x-3 p-3 bg-blue-50 rounded-xl">
-                      <Clock className="w-6 h-6 text-blue-600 flex-shrink-0" />
-                      <div className="flex-1">
-                        <div className="font-bold text-gray-900 text-sm">24/7 Service</div>
-                        <div className="text-xs text-gray-600">24/7 support</div>
-                      </div>
-                    </div>
-                    <div className="flex items-center space-x-3 p-3 bg-green-50 rounded-xl">
-                      <Award className="w-6 h-6 text-green-600 flex-shrink-0" />
-                      <div className="flex-1">
-                        <div className="font-bold text-gray-900 text-sm">15+ Years</div>
-                        <div className="text-xs text-gray-600">Experience</div>
-                      </div>
-                    </div>
-                    <div className="flex items-center space-x-3 p-3 bg-purple-50 rounded-xl">
-                      <Shield className="w-6 h-6 text-purple-600 flex-shrink-0" />
-                      <div className="flex-1">
-                        <div className="font-bold text-gray-900 text-sm">Licensed</div>
-                        <div className="text-xs text-gray-600">& Insured</div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Divider */}
-                <div className="border-t border-gray-200 my-6"></div>
-
-                {/* Contact CTA Section */}
-                <div>
-                  <h3 className="text-lg font-bold text-gray-900 mb-2">Still have questions?</h3>
-                  <p className="text-gray-600 text-sm mb-4">Our experts are here to help</p>
-                  
-                  <div className="grid grid-cols-1 gap-3">
-                    <a
-                      href="/contact"
-                      className="group bg-blue-500 hover:bg-blue-600 text-white rounded-xl p-3 transition-all duration-300 transform hover:scale-105 hover:shadow-lg flex items-center space-x-3"
-                    >
-                      <MessageCircle className="w-5 h-5 group-hover:animate-bounce flex-shrink-0" />
-                      <div className="flex-1">
-                        <div className="font-bold text-sm">Live Chat</div>
-                        <div className="text-blue-100 text-xs">Get instant answers</div>
-                      </div>
-                    </a>
-                    
-                    <a
-                      href="tel:18002665524"
-                      className="group bg-green-500 hover:bg-green-600 text-white rounded-xl p-3 transition-all duration-300 transform hover:scale-105 hover:shadow-lg flex items-center space-x-3"
-                    >
-                      <Phone className="w-5 h-5 group-hover:animate-bounce flex-shrink-0" />
-                      <div className="flex-1">
-                        <div className="font-bold text-sm">Call Now</div>
-                        <div className="text-green-100 text-xs">24/7 Service</div>
-                      </div>
-                    </a>
-                    
-                    <a
-                      href="/contact"
-                      className="group bg-purple-500 hover:bg-purple-600 text-white rounded-xl p-3 transition-all duration-300 transform hover:scale-105 hover:shadow-lg flex items-center space-x-3"
-                    >
-                      <HelpCircle className="w-5 h-5 group-hover:animate-bounce flex-shrink-0" />
-                      <div className="flex-1">
-                        <div className="font-bold text-sm">Free Consultation</div>
-                        <div className="text-purple-100 text-xs">Expert assessment</div>
-                      </div>
-                    </a>
-                  </div>
-                </div>
-              </div>
-
-            </div>
-          </div>
-
-          {/* Right Side - Scrollable FAQs */}
-          <div className="lg:col-span-2 lg:order-2">
-            {/* FAQ Accordion - Limited to 5 visible, rest scrollable */}
-            <div className="space-y-4 animate-fade-in-up animation-delay-600 h-[520px] overflow-y-auto pr-4 custom-scrollbar" style={{ scrollbarWidth: '2px' }}>
-              {faqs.map((faq, index) => (
+        <div className="max-w-7xl mx-auto">
+          {/* FAQ Grid - 2 Columns */}
+          <div className="grid lg:grid-cols-2 gap-8 animate-fade-in-up animation-delay-600">
+            {/* Left Column - First 5 FAQs */}
+            <div className="space-y-4">
+              {faqs.slice(0, 5).map((faq, index) => (
                 <div
                   key={index}
                   className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-[1.02] border border-gray-100 overflow-hidden animate-fade-in-up"
@@ -227,8 +161,65 @@ const FAQ = () => {
                 </div>
               ))}
             </div>
-          </div>
 
+            {/* Right Column - Last 5 FAQs */}
+            <div className="space-y-4">
+              {faqs.slice(5, 10).map((faq, index) => {
+                const actualIndex = index + 5;
+                return (
+                  <div
+                    key={actualIndex}
+                    className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-[1.02] border border-gray-100 overflow-hidden animate-fade-in-up"
+                    style={{ animationDelay: `${0.1 * actualIndex}s` }}
+                  >
+                    <button
+                      className="w-full px-6 py-5 text-left flex justify-between items-center hover:bg-gray-50 transition-all duration-300 group"
+                      onClick={() => toggleFAQ(actualIndex)}
+                    >
+                      <div className="flex items-center space-x-4">
+                        <div className="flex-shrink-0">
+                          <div className={`w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 ${
+                            openIndex === actualIndex 
+                              ? 'bg-blue-500 text-white scale-110' 
+                              : 'bg-blue-100 text-blue-600 group-hover:bg-blue-200'
+                          }`}>
+                            <span className="font-bold text-sm">{actualIndex + 1}</span>
+                          </div>
+                        </div>
+                        <div>
+                          <span className="font-bold text-gray-800 text-lg group-hover:text-blue-600 transition-colors duration-300">
+                            {faq.question}
+                          </span>
+                        </div>
+                      </div>
+                      <div className={`flex-shrink-0 transition-all duration-300 ${
+                        openIndex === actualIndex ? 'rotate-180 text-blue-600' : 'text-gray-400 group-hover:text-blue-600'
+                      }`}>
+                        <ChevronDown className="w-5 h-5" />
+                      </div>
+                    </button>
+                    
+                    <div
+                      ref={el => contentRefs.current[actualIndex] = el}
+                      className={`transition-all duration-500 ease-in-out overflow-hidden ${
+                        openIndex === actualIndex 
+                          ? 'max-h-96 opacity-100' 
+                          : 'max-h-0 opacity-0'
+                      }`}
+                    >
+                      <div className="px-6 pb-5 pt-2">
+                        <div className="bg-gradient-to-r from-blue-50 to-green-50 rounded-xl p-5 border-l-4 border-blue-500">
+                          <p className="text-gray-700 leading-relaxed animate-fade-in-up">
+                            {faq.answer}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
         </div>
       </div>
     </section>

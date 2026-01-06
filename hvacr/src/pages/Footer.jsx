@@ -64,7 +64,7 @@ const Footer = () => {
 
           {/* Quick Links */}
           <div>
-            <h3 className="text-lg font-bold mb-6">Quick Links</h3>
+            <h3 className="text-lg font-bold mb-6 bg-gradient-to-r from-blue-400 to-green-400 bg-clip-text text-transparent">Quick Links</h3>
             <ul className="space-y-3">
               {quickLinks.map((item) => (
                 <li key={item.name}>
@@ -82,7 +82,7 @@ const Footer = () => {
 
           {/* Services */}
           <div>
-            <h3 className="text-lg font-bold mb-6">Our Services</h3>
+            <h3 className="text-lg font-bold mb-6 bg-gradient-to-r from-green-400 to-blue-400 bg-clip-text text-transparent">Our Services</h3>
             <ul className="space-y-3">
               {services.map((service) => (
                 <li key={service.name}>
@@ -100,7 +100,7 @@ const Footer = () => {
 
           {/* Contact Info */}
           <div>
-            <h3 className="text-lg font-bold mb-6">Contact Info</h3>
+            <h3 className="text-lg font-bold mb-6 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">Contact Info</h3>
             <div className="space-y-4">
               <div className="flex items-start space-x-3">
                 <MapPin className="w-5 h-5 text-blue-600 mt-1 flex-shrink-0" />
