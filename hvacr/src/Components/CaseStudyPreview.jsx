@@ -28,7 +28,7 @@ const CaseStudyPreview = () => {
   ]
 
   return (
-    <div className="section-padding bg-gradient-to-br from-gray-50 to-blue-50">
+    <div className="py-8 md:py-12 bg-gradient-to-br from-gray-50 to-blue-50">
       <div className="container-custom">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-6 text-gray-900">
