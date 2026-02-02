@@ -63,7 +63,7 @@ const HomeContact = () => {
                 </p>
                 <button
                   onClick={() => setIsSubmitted(false)}
-                  className="btn btn-primary"
+                  className="bg-gradient-to-r from-indigo-500 to-purple-500 hover:from-indigo-600 hover:to-purple-600 text-white px-6 py-3 rounded-lg font-semibold transition-all duration-300"
                 >
                   Send Another Message
                 </button>
@@ -142,7 +142,7 @@ const HomeContact = () => {
                 
                 <button
                   type="submit"
-                  className="w-full btn btn-primary py-4 text-lg font-semibold flex items-center justify-center"
+                  className="w-full bg-gradient-to-r from-indigo-500 to-purple-500 hover:from-indigo-600 hover:to-purple-600 text-white py-4 text-lg font-semibold flex items-center justify-center rounded-lg transition-all duration-300"
                 >
                   <Send className="w-5 h-5 mr-2" />
                   Send Message

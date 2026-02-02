@@ -16,11 +16,11 @@
   }
   
   .btn-primary {
-    @apply bg-blue-800 text-white hover:bg-blue-900 hover:shadow-lg;
+    @apply bg-gradient-to-r from-indigo-500 to-purple-500 hover:from-indigo-600 hover:to-purple-600 text-white hover:shadow-lg;
   }
   
   .btn-secondary {
-    @apply bg-green-600 text-white hover:bg-green-700 hover:shadow-lg;
+    @apply bg-gradient-to-r from-indigo-500 to-purple-500 hover:from-indigo-600 hover:to-purple-600 text-white hover:shadow-lg;
   }
 
   .text-primary {

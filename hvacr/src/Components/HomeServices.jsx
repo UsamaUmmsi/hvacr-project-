@@ -167,7 +167,7 @@ const HomeServices = () => {
                     <p className={`text-${service.color}-600 group-hover:text-white font-bold text-lg transition-colors duration-300`}>
                       {service.price}
                     </p>
-                    <button className={`px-4 py-2 bg-${service.color}-100 group-hover:bg-white text-${service.color}-600 group-hover:text-${service.color}-600 rounded-lg text-sm font-semibold transition-all duration-300 transform group-hover:scale-105 shadow-md`}>
+                    <button className="px-4 py-2 bg-indigo-100 group-hover:bg-white text-indigo-600 group-hover:text-indigo-600 rounded-lg text-sm font-semibold transition-all duration-300 transform group-hover:scale-105 shadow-md">
                       Book Now
                     </button>
                   </div>

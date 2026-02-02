@@ -54,7 +54,7 @@ const Header = () => {
                 <p className="text-primary font-bold">1-800-COOL-AIR</p>
               </div>
             </div>
-            <Link to="/contact" className="btn btn-primary">
+            <Link to="/contact" className="bg-gradient-to-r from-indigo-500 to-purple-500 hover:from-indigo-600 hover:to-purple-600 text-white px-6 py-3 rounded-lg font-semibold transition-all duration-300">
               Get Quote
             </Link>
           </div>
@@ -89,7 +89,7 @@ const Header = () => {
                 </div>
                 <Link
                   to="/contact"
-                  className="btn btn-primary w-full text-center"
+                  className="bg-gradient-to-r from-indigo-500 to-purple-500 hover:from-indigo-600 hover:to-purple-600 text-white px-6 py-3 rounded-lg font-semibold transition-all duration-300 w-full text-center"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   24/7 Service

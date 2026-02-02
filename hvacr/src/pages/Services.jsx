@@ -192,7 +192,7 @@ const Services = () => {
               Transform your space with cutting-edge heating, ventilation, air conditioning, and refrigeration solutions
             </p>
             <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
-              <button className="group px-8 py-4 bg-gradient-to-r from-blue-600 to-green-600 text-white rounded-full font-semibold text-lg transition-all duration-300 transform hover:scale-105 hover:shadow-2xl flex items-center space-x-2">
+              <button className="group px-8 py-4 bg-gradient-to-r from-indigo-500 to-purple-500 hover:from-indigo-600 hover:to-purple-600 text-white rounded-full font-semibold text-lg transition-all duration-300 transform hover:scale-105 hover:shadow-2xl flex items-center space-x-2">
                 <span>Explore Services</span>
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
               </button>
@@ -340,7 +340,7 @@ const Services = () => {
                             </ul>
 
                             {/* Button */}
-                            <button className={`w-full py-3 bg-gradient-to-r ${category.color} text-white rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 hover:shadow-lg flex items-center justify-center space-x-2`}>
+                            <button className="w-full py-3 bg-gradient-to-r from-indigo-500 to-purple-500 hover:from-indigo-600 hover:to-purple-600 text-white rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 hover:shadow-lg flex items-center justify-center space-x-2">
                               <span>Book Service</span>
                               <ArrowRight className="w-4 h-4" />
                             </button>

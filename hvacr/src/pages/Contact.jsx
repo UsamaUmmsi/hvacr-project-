@@ -91,7 +91,7 @@ const Contact = () => {
               Get in touch with our HVACR professionals for expert solutions and exceptional service
             </p>
             <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
-              <button className="group px-8 py-4 bg-gradient-to-r from-blue-600 to-green-600 text-white rounded-full font-semibold text-lg transition-all duration-300 transform hover:scale-105 hover:shadow-2xl flex items-center space-x-2">
+              <button className="group px-8 py-4 bg-gradient-to-r from-indigo-500 to-purple-500 hover:from-indigo-600 hover:to-purple-600 text-white rounded-full font-semibold text-lg transition-all duration-300 transform hover:scale-105 hover:shadow-2xl flex items-center space-x-2">
                 <span>Get Started</span>
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
               </button>
@@ -132,7 +132,7 @@ const Contact = () => {
                 </p>
                 <button
                   onClick={() => setIsSubmitted(false)}
-                  className="btn btn-primary"
+                  className="bg-gradient-to-r from-indigo-500 to-purple-500 hover:from-indigo-600 hover:to-purple-600 text-white px-6 py-3 rounded-lg font-semibold transition-all duration-300"
                 >
                   Send Another Message
                 </button>
@@ -211,7 +211,7 @@ const Contact = () => {
                 
                 <button
                   type="submit"
-                  className="w-full btn btn-primary py-4 text-lg font-semibold flex items-center justify-center"
+                  className="w-full bg-gradient-to-r from-indigo-500 to-purple-500 hover:from-indigo-600 hover:to-purple-600 text-white py-4 text-lg font-semibold flex items-center justify-center rounded-lg transition-all duration-300"
                 >
                   <Send className="w-5 h-5 mr-2" />
                   Send Message

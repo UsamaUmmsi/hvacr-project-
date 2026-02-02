@@ -63,7 +63,7 @@ const Hero = () => {
             </p>
             
             <div className="flex flex-wrap gap-4 animate-fade-in-up animation-delay-400">
-              <Link to="/contact" className="btn btn-secondary text-lg px-8 py-4 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl">
+              <Link to="/contact" className="btn bg-gradient-to-r from-indigo-500 to-purple-500 hover:from-indigo-600 hover:to-purple-600 text-white text-lg px-8 py-4 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl rounded-lg font-semibold">
                 Get Free Estimate
               </Link>
               <a href="tel:18002665524" className="btn bg-white/20 hover:bg-white/30 text-lg px-8 py-4 backdrop-blur-sm border border-white/30 transform hover:scale-105 transition-all duration-300">
@@ -141,7 +141,7 @@ const Hero = () => {
               </div>
               <button
                 type="submit"
-                className="w-full btn btn-secondary py-4 text-lg font-bold transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl animate-fade-in-up animation-delay-1300"
+                className="w-full bg-gradient-to-r from-indigo-500 to-purple-500 hover:from-indigo-600 hover:to-purple-600 text-white py-4 text-lg font-bold transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl rounded-lg animate-fade-in-up animation-delay-1300"
               >
                 Request Service Now
               </button>
