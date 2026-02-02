@@ -63,7 +63,7 @@ const FAQ = () => {
   }
 
   return (
-    <section className="section-padding relative overflow-hidden text-white">
+    <section className="section-padding relative overflow-hidden text-white safe-area-left safe-area-right">
       {/* Video Background */}
       <div className="absolute inset-0 z-0">
         <video
@@ -81,8 +81,8 @@ const FAQ = () => {
         <div className="absolute inset-0 bg-black/40"></div>
       </div>
 
-      {/* Background Animation Elements */}
-      <div className="absolute inset-0 opacity-10">
+      {/* Background Animation Elements - Mobile Hidden */}
+      <div className="absolute inset-0 opacity-10 mobile-hidden">
         <div className="absolute top-20 left-10 w-32 h-32 bg-blue-500 rounded-full animate-pulse"></div>
         <div className="absolute top-40 right-20 w-24 h-24 bg-green-500 rounded-full animate-bounce-slow"></div>
         <div className="absolute bottom-20 left-1/4 w-16 h-16 bg-blue-400 rounded-full animate-pulse"></div>
@@ -91,24 +91,24 @@ const FAQ = () => {
 
       <div className="container-custom relative z-10">
         
-        {/* Header - Centered */}
-        <div className="text-center mb-16 animate-fade-in-up">
-          <div className="inline-flex items-center justify-center w-16 h-16 bg-white/20 backdrop-blur-lg rounded-full mb-6 animate-bounce-slow border border-white/30">
-            <HelpCircle className="w-8 h-8 text-white" />
+        {/* Header - Centered - Mobile Responsive */}
+        <div className="text-center mb-8 sm:mb-12 lg:mb-16 animate-fade-in-up">
+          <div className="inline-flex items-center justify-center w-12 h-12 sm:w-16 sm:h-16 bg-white/20 backdrop-blur-lg rounded-full mb-4 sm:mb-6 animate-bounce-slow border border-white/30">
+            <HelpCircle className="w-6 h-6 sm:w-8 sm:h-8 text-white" />
           </div>
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">
+          <h2 className="responsive-heading font-bold mb-3 sm:mb-4">
             <span className="text-white">Frequently Asked</span> <span className="text-primary">Questions</span>
           </h2>
-          <p className="text-lg text-white/90 max-w-2xl mx-auto">
+          <p className="responsive-text text-white/90 max-w-2xl mx-auto">
             Get answers to common questions about our professional HVACR services
           </p>
         </div>
 
         <div className="max-w-7xl mx-auto">
-          {/* FAQ Grid - 2 Columns */}
-          <div className="grid lg:grid-cols-2 gap-8 animate-fade-in-up animation-delay-600">
-            {/* Left Column - First 5 FAQs */}
-            <div className="space-y-4">
+          {/* FAQ Grid - Mobile Responsive */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 lg:gap-8 animate-fade-in-up animation-delay-600">
+            {/* Left Column - First 5 FAQs - Mobile Responsive */}
+            <div className="space-y-3 sm:space-y-4">
               {faqs.slice(0, 5).map((faq, index) => (
                 <div
                   key={index}
@@ -116,29 +116,29 @@ const FAQ = () => {
                   style={{ animationDelay: `${0.1 * index}s` }}
                 >
                   <button
-                    className="w-full px-6 py-5 text-left flex justify-between items-center hover:bg-gray-50 transition-all duration-300 group"
+                    className="w-full px-4 py-4 sm:px-6 sm:py-5 text-left flex justify-between items-center hover:bg-gray-50 transition-all duration-300 group focus-visible:focus"
                     onClick={() => toggleFAQ(index)}
                   >
-                    <div className="flex items-center space-x-4">
+                    <div className="flex items-center space-x-3 sm:space-x-4">
                       <div className="flex-shrink-0">
-                        <div className={`w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 ${
+                        <div className={`w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center transition-all duration-300 ${
                           openIndex === index 
                             ? 'bg-blue-500 text-white scale-110' 
                             : 'bg-blue-100 text-blue-600 group-hover:bg-blue-200'
                         }`}>
-                          <span className="font-bold text-sm">{index + 1}</span>
+                          <span className="font-bold text-xs sm:text-sm">{index + 1}</span>
                         </div>
                       </div>
-                      <div>
-                        <span className="font-bold text-gray-800 text-lg group-hover:text-blue-600 transition-colors duration-300">
+                      <div className="flex-1 min-w-0">
+                        <span className="font-bold text-gray-800 text-sm sm:text-base lg:text-lg group-hover:text-blue-600 transition-colors duration-300 line-clamp-2">
                           {faq.question}
                         </span>
                       </div>
                     </div>
-                    <div className={`flex-shrink-0 transition-all duration-300 ${
+                    <div className={`flex-shrink-0 transition-all duration-300 ml-2 ${
                       openIndex === index ? 'rotate-180 text-blue-600' : 'text-gray-400 group-hover:text-blue-600'
                     }`}>
-                      <ChevronDown className="w-5 h-5" />
+                      <ChevronDown className="w-4 h-4 sm:w-5 sm:h-5" />
                     </div>
                   </button>
                   
@@ -150,9 +150,9 @@ const FAQ = () => {
                         : 'max-h-0 opacity-0'
                     }`}
                   >
-                    <div className="px-6 pb-5 pt-2">
-                      <div className="bg-gradient-to-r from-blue-50 to-green-50 rounded-xl p-5 border-l-4 border-blue-500">
-                        <p className="text-gray-700 leading-relaxed animate-fade-in-up">
+                    <div className="px-4 pb-4 pt-2 sm:px-6 sm:pb-5 sm:pt-2">
+                      <div className="bg-gradient-to-r from-blue-50 to-green-50 rounded-xl p-3 sm:p-5 border-l-4 border-blue-500">
+                        <p className="text-gray-700 leading-relaxed animate-fade-in-up text-sm sm:text-base">
                           {faq.answer}
                         </p>
                       </div>
@@ -162,8 +162,8 @@ const FAQ = () => {
               ))}
             </div>
 
-            {/* Right Column - Last 5 FAQs */}
-            <div className="space-y-4">
+            {/* Right Column - Last 5 FAQs - Mobile Responsive */}
+            <div className="space-y-3 sm:space-y-4">
               {faqs.slice(5, 10).map((faq, index) => {
                 const actualIndex = index + 5;
                 return (
@@ -173,29 +173,29 @@ const FAQ = () => {
                     style={{ animationDelay: `${0.1 * actualIndex}s` }}
                   >
                     <button
-                      className="w-full px-6 py-5 text-left flex justify-between items-center hover:bg-gray-50 transition-all duration-300 group"
+                      className="w-full px-4 py-4 sm:px-6 sm:py-5 text-left flex justify-between items-center hover:bg-gray-50 transition-all duration-300 group focus-visible:focus"
                       onClick={() => toggleFAQ(actualIndex)}
                     >
-                      <div className="flex items-center space-x-4">
+                      <div className="flex items-center space-x-3 sm:space-x-4">
                         <div className="flex-shrink-0">
-                          <div className={`w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 ${
+                          <div className={`w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center transition-all duration-300 ${
                             openIndex === actualIndex 
                               ? 'bg-blue-500 text-white scale-110' 
                               : 'bg-blue-100 text-blue-600 group-hover:bg-blue-200'
                           }`}>
-                            <span className="font-bold text-sm">{actualIndex + 1}</span>
+                            <span className="font-bold text-xs sm:text-sm">{actualIndex + 1}</span>
                           </div>
                         </div>
-                        <div>
-                          <span className="font-bold text-gray-800 text-lg group-hover:text-blue-600 transition-colors duration-300">
+                        <div className="flex-1 min-w-0">
+                          <span className="font-bold text-gray-800 text-sm sm:text-base lg:text-lg group-hover:text-blue-600 transition-colors duration-300 line-clamp-2">
                             {faq.question}
                           </span>
                         </div>
                       </div>
-                      <div className={`flex-shrink-0 transition-all duration-300 ${
+                      <div className={`flex-shrink-0 transition-all duration-300 ml-2 ${
                         openIndex === actualIndex ? 'rotate-180 text-blue-600' : 'text-gray-400 group-hover:text-blue-600'
                       }`}>
-                        <ChevronDown className="w-5 h-5" />
+                        <ChevronDown className="w-4 h-4 sm:w-5 sm:h-5" />
                       </div>
                     </button>
                     
@@ -207,9 +207,9 @@ const FAQ = () => {
                           : 'max-h-0 opacity-0'
                       }`}
                     >
-                      <div className="px-6 pb-5 pt-2">
-                        <div className="bg-gradient-to-r from-blue-50 to-green-50 rounded-xl p-5 border-l-4 border-blue-500">
-                          <p className="text-gray-700 leading-relaxed animate-fade-in-up">
+                      <div className="px-4 pb-4 pt-2 sm:px-6 sm:pb-5 sm:pt-2">
+                        <div className="bg-gradient-to-r from-blue-50 to-green-50 rounded-xl p-3 sm:p-5 border-l-4 border-blue-500">
+                          <p className="text-gray-700 leading-relaxed animate-fade-in-up text-sm sm:text-base">
                             {faq.answer}
                           </p>
                         </div>

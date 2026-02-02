@@ -424,7 +424,7 @@ const Services = () => {
 
                 <div className="absolute bottom-0 left-0 right-0 h-2 bg-white/20">
                   <div 
-                    className="h-full bg-gradient-to-r from-blue-500 to-green-500 transition-all duration-700"
+                    className="h-full bg-gradient-to-r from-indigo-500 to-purple-500 transition-all duration-700"
                     style={{ width: `${((currentStep + 1) / processSteps.length) * 100}%` }}
                   ></div>
                 </div>
