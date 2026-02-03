@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import { Clock, Award, Users } from 'lucide-react'
 import { Simple3DIcon, Background3D } from '../Components/ThreeD/Simple3D'
+import heroVideo from '../assets/6037203_Factory_Industrial_1920x1080 (2).mp4'
 
 const Hero = () => {
   return (
@@ -14,7 +15,7 @@ const Hero = () => {
           playsInline
           className="w-full h-full object-cover"
         >
-          <source src="/hvacr-video.mp4" type="video/mp4" />
+          <source src={heroVideo} type="video/mp4" />
           {/* Fallback background if video doesn't load */}
         </video>
         {/* Fallback gradient background */}
