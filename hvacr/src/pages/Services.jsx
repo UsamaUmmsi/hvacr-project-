@@ -2,6 +2,7 @@ import React from 'react'
 import { CheckCircle, Clock, Shield, Award, Zap, Wrench, Thermometer, Snowflake, TrendingUp, Users, Lightbulb, ChevronLeft, ChevronRight, MessageSquare, DollarSign, Hammer, ThumbsUp, ArrowRight } from 'lucide-react'
 import { useState, useEffect, useRef } from 'react'
 import { Background3D } from '../Components/ThreeD/Simple3D'
+import heroVideo from '../assets/bg-02.mp4'
 
 const Services = () => {
   const [currentStep, setCurrentStep] = useState(0)
@@ -149,7 +150,7 @@ const Services = () => {
             playsInline
             className="w-full h-full object-cover"
           >
-            <source src="/hero-video.mp4" type="video/mp4" />
+            <source src={heroVideo} type="video/mp4" />
           </video>
           {/* Fallback gradient background */}
           <div className="absolute inset-0 bg-gradient-to-r from-blue-900 via-blue-800 to-green-800"></div>

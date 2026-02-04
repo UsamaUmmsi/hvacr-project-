@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import { Clock, Award, Users } from 'lucide-react'
 import { Simple3DIcon, Background3D } from '../Components/ThreeD/Simple3D'
+import heroVideo from '../assets/bg-02.mp4'
 
 const Hero = () => {
   return (
@@ -15,7 +16,7 @@ const Hero = () => {
           preload="auto"
           className="w-full h-full object-cover"
         >
-          <source src="/hero-video.mp4" type="video/mp4" />
+          <source src={heroVideo} type="video/mp4" />
           {/* Fallback background if video doesn't load */}
         </video>
         {/* Fallback gradient background */}
