@@ -14,7 +14,7 @@ const Header = () => {
   ]
 
   return (
-    <header className="sticky top-0 z-50 bg-white shadow-md safe-area-top">
+    <header className="sticky top-0 z-50 bg-white/10 backdrop-blur-lg border-b border-white/20 safe-area-top">
       <div className="container-custom">
         <div className="flex items-center justify-between py-3 sm:py-4">
           {/* Logo */}
@@ -36,7 +36,7 @@ const Header = () => {
                 to={item.path}
                 className={({ isActive }) =>
                   `font-medium transition-colors hover:text-primary text-sm xl:text-base ${
-                    isActive ? 'text-primary border-b-2 border-primary' : 'text-gray-700'
+                    isActive ? 'text-primary border-b-2 border-primary' : 'text-gray-900'
                   }`
                 }
               >
@@ -78,7 +78,7 @@ const Header = () => {
 
         {/* Mobile Menu */}
         {isMenuOpen && (
-          <div className="md:hidden lg:flex xl:hidden border-t bg-white absolute left-0 right-0 top-full shadow-lg">
+          <div className="md:hidden lg:flex xl:hidden border-t bg-white/10 backdrop-blur-lg absolute left-0 right-0 top-full shadow-lg">
             <div className="container-custom">
               <div className="flex flex-col py-4 space-y-1">
                 {navItems.map((item) => (
