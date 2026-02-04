@@ -1,10 +1,26 @@
 import { Link } from 'react-router-dom'
 import { Clock, Award, Users } from 'lucide-react'
 import { Simple3DIcon } from '../Components/ThreeD/Simple3D'
+import heroVideo from '../assets/bg-02.mp4'
 
 const Hero = () => {
   return (
-    <section className="relative min-h-screen bg-white text-gray-900 overflow-hidden hero-section safe-area-top">
+    <section className="relative min-h-screen text-white overflow-hidden hero-section safe-area-top">
+
+      {/* Video Background */}
+      <div className="absolute inset-0 z-0">
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="auto"
+          className="w-full h-full object-cover"
+        >
+          <source src={heroVideo} type="video/mp4" />
+        </video>
+        <div className="absolute inset-0 bg-black/30"></div>
+      </div>
 
       <div className="container-custom relative z-10 safe-area-left safe-area-right">
         <div className="grid lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 items-center min-h-screen py-8 sm:py-12 lg:py-20">
