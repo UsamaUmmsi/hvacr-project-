@@ -1,13 +1,4 @@
 {
   "buildCommand": "npm run build",
-  "outputDirectory": "dist",
-  "env": {
-    "SKIP_ENV_VALIDATION": "true"
-  },
-  "routes": [
-    {
-      "src": "^/.*",
-      "dest": "/index.html"
-    }
-  ]
+  "outputDirectory": "dist"
 }
