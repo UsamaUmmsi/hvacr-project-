@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom'
 import { Clock, Award, Users } from 'lucide-react'
 import { Simple3DIcon, Background3D } from '../Components/ThreeD/Simple3D'
-import heroVideo from '../assets/bga-01.mp4'
 
 const Hero = () => {
   return (
@@ -13,15 +12,16 @@ const Hero = () => {
           muted
           loop
           playsInline
+          preload="auto"
           className="w-full h-full object-cover"
         >
-          <source src={heroVideo} type="video/mp4" />
+          <source src="/bga-01.mp4" type="video/mp4" />
           {/* Fallback background if video doesn't load */}
         </video>
         {/* Fallback gradient background */}
         <div className="absolute inset-0 bg-gradient-to-r from-blue-900 via-blue-800 to-green-800"></div>
         {/* Dark overlay for better text readability */}
-        <div></div>
+        <div className="absolute inset-0 bg-black/30"></div>
       </div>
 
       {/* 3D Background Elements */}
