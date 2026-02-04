@@ -21,7 +21,7 @@ const Hero = () => {
         {/* Fallback gradient background */}
         <div className="absolute inset-0 bg-gradient-to-r from-blue-900 via-blue-800 to-green-800"></div>
         {/* Dark overlay for better text readability */}
-        <div className="absolute inset-0 bg-black/40"></div>
+        <div></div>
       </div>
 
       {/* 3D Background Elements */}
