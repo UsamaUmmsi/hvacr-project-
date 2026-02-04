@@ -14,7 +14,7 @@ const Header = () => {
   ]
 
   return (
-    <header className="sticky top-0 z-50 bg-white/10 backdrop-blur-lg border-b border-white/20 safe-area-top">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-white/80 shadow-md safe-area-top" style={{backdropFilter: 'blur(10px)'}}>
       <div className="container-custom">
         <div className="flex items-center justify-between py-3 sm:py-4">
           {/* Logo */}
