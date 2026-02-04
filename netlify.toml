@@ -1,7 +1,7 @@
 [build]
-  command = "cd hvacr && npm run build"
-  publish = "hvacr/dist"
-  base = "."
+  base = "hvacr"
+  command = "npm install && npm run build"
+  publish = "dist"
 
 [[redirects]]
   from = "/*"
