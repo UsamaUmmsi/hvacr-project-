@@ -1,49 +1,10 @@
 import { Link } from 'react-router-dom'
 import { Clock, Award, Users } from 'lucide-react'
-import { Simple3DIcon, Background3D } from '../Components/ThreeD/Simple3D'
-import heroVideo from '../assets/bg-02.mp4'
+import { Simple3DIcon } from '../Components/ThreeD/Simple3D'
 
 const Hero = () => {
   return (
-    <section className="relative min-h-screen text-white overflow-hidden hero-section safe-area-top">
-      {/* Video Background */}
-      <div className="absolute inset-0 z-0">
-        <video
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="auto"
-          className="w-full h-full object-cover"
-        >
-          <source src={heroVideo} type="video/mp4" />
-          {/* Fallback background if video doesn't load */}
-        </video>
-        {/* Fallback gradient background */}
-        <div className="absolute inset-0 bg-gradient-to-r from-blue-900 via-blue-800 to-green-800"></div>
-        {/* Dark overlay for better text readability */}
-        <div className="absolute inset-0 bg-black/30"></div>
-      </div>
-
-      {/* 3D Background Elements */}
-      <Background3D className="z-1" />
-
-      {/* Animated particles background */}
-      <div className="absolute inset-0 z-1">
-        <div className="particles">
-          {[...Array(20)].map((_, i) => (
-            <div
-              key={i}
-              className="particle"
-              style={{
-                left: `${Math.random() * 100}%`,
-                animationDelay: `${Math.random() * 3}s`,
-                animationDuration: `${3 + Math.random() * 4}s`
-              }}
-            ></div>
-          ))}
-        </div>
-      </div>
+    <section className="relative min-h-screen bg-white text-gray-900 overflow-hidden hero-section safe-area-top">
 
       <div className="container-custom relative z-10 safe-area-left safe-area-right">
         <div className="grid lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 items-center min-h-screen py-8 sm:py-12 lg:py-20">
