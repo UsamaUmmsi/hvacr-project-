@@ -149,7 +149,7 @@ const Services = () => {
             playsInline
             className="w-full h-full object-cover"
           >
-            <source src="/bga-01.mp4" type="video/mp4" />
+            <source src="/hero-video.mp4" type="video/mp4" />
           </video>
           {/* Fallback gradient background */}
           <div className="absolute inset-0 bg-gradient-to-r from-blue-900 via-blue-800 to-green-800"></div>

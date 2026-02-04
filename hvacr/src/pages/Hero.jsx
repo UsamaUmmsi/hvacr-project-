@@ -15,7 +15,7 @@ const Hero = () => {
           preload="auto"
           className="w-full h-full object-cover"
         >
-          <source src="/bga-01.mp4" type="video/mp4" />
+          <source src="/hero-video.mp4" type="video/mp4" />
           {/* Fallback background if video doesn't load */}
         </video>
         {/* Fallback gradient background */}
