@@ -2,7 +2,7 @@ import React from 'react'
 import { CheckCircle, Clock, Shield, Award, Zap, Wrench, Thermometer, Snowflake, TrendingUp, Users, Lightbulb, ChevronLeft, ChevronRight, MessageSquare, DollarSign, Hammer, ThumbsUp, ArrowRight } from 'lucide-react'
 import { useState, useEffect, useRef } from 'react'
 import { Background3D } from '../Components/ThreeD/Simple3D'
-import heroVideo from '../assets/bg-02.mp4'
+import heroVideo from '../assets/bga-01.mp4'
 
 const Services = () => {
   const [currentStep, setCurrentStep] = useState(0)
